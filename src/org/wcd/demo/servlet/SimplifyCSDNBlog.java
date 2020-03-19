@@ -159,7 +159,7 @@ public class SimplifyCSDNBlog extends HttpServlet {
 			}else {
 				element.attr("href",req.getContextPath() + "/css/" + splitedHref2[0] + ".css");
 			}
-			
+			 
 		}
 	}
 
