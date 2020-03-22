@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>快手视频提取</title>
+<style type="text/css">
+body {
+	box-sizing: border-box;
+}
+
+#form {
+	width: 600px;
+	height: 450px;
+	margin: auto;
+	margin-top: 50px;
+	background-color: #EEEEEE;
+	border-radius: 8px;
+	border: 1px solid grey;
+	position: relative;
+}
+
+table {
+	margin: auto;
+	margin-top: 20px;
+}
+
+td {
+	/*border: 1px solid red;*/
+	height: 40px;
+}
+
+.td-title {
+	text-align: center;
+}
+
+.td-left {
+	width: 60px;
+	text-align: right;
+}
+
+.td-right {
+	width: 440px;
+	padding-left: 10px;
+}
+
+.td-submit {
+	margin: auto;
+	text-align: center;
+}
+
+#worklist, #working, #videoUrls {
+	width: 80px;
+	height: 30px;
+}
+
+input {
+	width: 420px;
+	height: 30px;
+	border-radius: 2px;
+	border: 1px solid black;
+	padding-left: 5px;
+}
+
+#cookie {
+	width: 415px;
+	hight: 300px;
+	padding: 5px;
+	border-radius: 2px;
+	border: 1px solid black;
+	resize: none;
+}
+
+#tip {
+	margin-left: 50%;
+	position: absolute;
+	margin-top: 10px;
+	left: 5px;
+	/* width: 200px; */
+	height: 25px;
+	border: 1px solid red;
+	background-color: #00FF0055;
+}
+
+.tip-inv {
+	visibility: hidden;
+}
+
+.tip-vis {
+	visibility: visible;
+}
+</style>
+</head>
+<body>
+<div  id="form">
+<div id='tip' class="tip-inv">
+</div>
+	<div>
+		<form action="/servletstudy/parse-kuaishou" target="blank" method="post" id="kuaishou">
+			<table>
+				<tr>
+					<td class="td-title" colspan="2"><p>快手视频批量获取</p></td>
+				</tr>
+				<tr>
+					<td class="td-left"><label for="url">url</label></td>
+					<td class="td-right"><input type="text" id="url" name="url" placeholder="主播首页地址" value=""></td>
+				</tr>
+				<tr>
+					<td class="td-left"><label for="count">count</label></td>
+					<td class="td-right"><input type="text" id="count" name="count" value="24"></td>
+				</tr>
+				<tr>
+					<td class="td-left"><label for="cookie">cookie</label></td>
+					<td class="td-right"><textarea rows="12" placeholder="cookie" name="cookie" id="cookie"></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="td-submit">
+						<input id="worklist" type="button" value="作品列表">
+						<input id="working" type="button" value="作品列表(格式化)">
+						<input id="videoUrls" type="button" value="测试">
+					</td>
+				</tr>
+			</table>
+
+		</form>
+
+	</div>
+</div>
+	<script type="text/javascript" src="/servletstudy/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
+	
+	
+    jQuery(function($) {
+    	
+    	$("#cookie").append("\
+    			");
+    	
+    	
+    	$("#url").bind("change",
+    			function(e){
+			//$("#form").append("<div id='tip'></div>");
+			$.ajax({
+				  method: "POST",
+				  url: "/servletstudy/get-username",
+				  beforeSend:function(){
+					  //alert($("#url").val());
+				  },
+				  data: { url: $("#url").val(), 
+					  count: $("#count").val(),
+					  cookie: $("#cookie").text()}
+				})
+				.done(function(data){
+					//alert(data);
+					$("#tip").removeClass("tip-inv").addClass("tip-vis");
+					$("#tip").html("主播名：" + data);
+				})
+		}
+    	);
+    	
+
+    	$("#url").bind("mouseleave",
+			function(){
+					$("#tip").removeClass("tip-inv").addClass("tip-vis");
+					//$("#tip").html("主播名：" + data);
+				}
+    	);
+    	
+    	
+    	$("#url").mouseover(
+    			
+    	    function(){
+    	    	$("#tip").removeClass("tip-vis").addClass("tip-inv");
+    	    }
+    	);
+    	
+    	
+    	
+        //
+        $("#worklist").click(function(){
+            $("#kuaishou").removeAttr('action');
+            $("#kuaishou").attr('action','/servletstudy/parse-kuaishou');
+            $("#kuaishou").submit();
+        });
+        //
+        $("#working").click(function(){
+            $("#kuaishou").removeAttr('action');
+            $("#kuaishou").attr('action','/servletstudy/parse-kuaishou-formated');
+            $("#kuaishou").submit();
+        });
+        $("#videoUrls").click(function(){
+            $("#kuaishou").removeAttr('action');
+            $("#kuaishou").attr('action','/servletstudy/get-username');
+            $("#kuaishou").submit();
+        });
+    }) 
+	</script>
+
+</body>
+</html>

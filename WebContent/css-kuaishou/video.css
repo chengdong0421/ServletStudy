@@ -1,0 +1,10 @@
+body{
+	
+}
+
+#video{
+	width:300px;
+	position:absolute;
+	left: -150px;
+	margin-left: 50%;
+}

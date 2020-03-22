@@ -1,0 +1,21 @@
+{
+	"data" : {
+		"sensitiveUserInfo" : {
+			"kwaiId" : "1571751511",
+			"userId" : "1571751511",
+			"constellation" : "水瓶座",
+			"cityName" : "上海 虹口区",
+			"countsInfo" : {
+				"fan" : "궬궬ꪽꫝ",
+				"follow" : "뺻ꪽ",
+				"photo" : "뺻ꫝ",
+				"liked" : "ꫝ",
+				"open" : "ꫝ",
+				"playback" : "0",
+				"private" : "ꫝ",
+				"__typename" : "CountsInfo"
+			},
+			"__typename" : "User"
+		}
+	}
+}

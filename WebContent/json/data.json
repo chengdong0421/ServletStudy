@@ -1,0 +1,11 @@
+{
+	"data" : {
+		"feedById" : {
+			"currentWork" : {
+				"playUrl" : "https://txmov2.a.yximgs.com/upic/2019/12/19/10/BMjAxOTEyMTkxMDQzMzNfMTU3MTc1MTUxMV8yMDY4NDA3MzQ4N18yXzM=_b_Befbe8bde27dff29fa6e7a44d66f96f7b.mp4",
+				"__typename" : "VideoFeed"
+			},
+			"__typename" : "ProfileFeed"
+		}
+	}
+}

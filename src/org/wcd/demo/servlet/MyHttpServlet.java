@@ -2,6 +2,7 @@ package org.wcd.demo.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 练习request对象的方法
+ * @author Administrator
+ *
+ */
 @WebServlet("/httpservlet")
 public class MyHttpServlet extends HttpServlet{
 
@@ -26,5 +32,26 @@ public class MyHttpServlet extends HttpServlet{
 		writer.write("\n" + req.getProtocol());
 		writer.write("\n" + req.getServletPath());
 		writer.write("\n" + req.getRemoteAddr());
+		writer.write("\n\n");
+		
+		//获取request请求头数据
+		//getHeaderNames()
+		//getHeader(String name)
+		//getHeaders(String name)
+		//获取所有请求头的名称
+		Enumeration<String> headerNames = req.getHeaderNames();
+		while(headerNames.hasMoreElements()) {
+			String headerName = headerNames.nextElement();
+			writer.write(headerName + "::" + req.getHeader(headerName) + "\n");
+		}
+		
+		//获取请求体数据
+		//req.getParameter(String name)
+		//req.getParameterMap()
+		//req.getParameterNames()
+		//req.getParameterValues(String name)
+
+		
+		
 	}
 }

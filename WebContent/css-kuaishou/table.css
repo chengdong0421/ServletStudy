@@ -1,0 +1,12 @@
+#theader{
+	font-weight: 12;
+}
+
+table{
+	border-style: outset;
+	border-spacing: 0px;
+}
+
+td {
+	border: 1px solid #DDDDDD;
+}
